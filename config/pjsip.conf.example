@@ -1,0 +1,28 @@
+[global]
+type=global
+user_agent=Asterisk-Server
+
+; --- UDP Transport ---
+[transport-udp]
+type=transport
+protocol=udp
+bind=0.0.0.0:5060
+
+; --- Extension 101 Endpoint (Yealink Handset) ---
+[101]
+type=endpoint
+context=from-internal
+disallow=all
+allow=ulaw,alaw,g722
+auth=auth101
+aors=101
+
+[auth101]
+type=auth
+auth_type=userpass
+username=101
+password=YourSecurePassword123!   ; Set this password on your Yealink phone
+
+[101]
+type=aor
+max_contacts=1
